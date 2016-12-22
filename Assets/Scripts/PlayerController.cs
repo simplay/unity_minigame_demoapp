@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 			SetRandomPosition (other.gameObject, -10, 10);
 			score++;
 			DisplayScore ();
+			// play pickup sound here
 		}
 	}
 
