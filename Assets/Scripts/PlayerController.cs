@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 		DisplayScore ();
 		winText.text = "";
 	}
-	
+
 	// Update is called once per frame: before calling a frame
 	void Update () {}
 
@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag ("CollectableItem")) {
-			other.gameObject.SetActive (false);
+			//other.gameObject.SetActive (false);
+			SetRandomPosition (other.gameObject, -10, 10);
 			score++;
 			DisplayScore ();
 		}
@@ -43,8 +44,16 @@ public class PlayerController : MonoBehaviour {
 
 	void DisplayScore () {
 		scoreText.text = "Score " + score.ToString ();
-		if (score == 5) {
+		if (score == 30) {
 			winText.text = "You Win!";
 		}
+	}
+
+	/**
+	 * Assign a random position to a game object within a given range [min, max].
+	 */ 
+	void SetRandomPosition (GameObject other, float min, float max) {
+		Vector3 randomPosition = new Vector3 (Random.Range (min, max), 0.5f, Random.Range (min, max)); 
+		other.transform.position = randomPosition;
 	}
 }
